@@ -8,7 +8,6 @@ namespace ProductSaleApp.Repositories
         void UpdateProduct(ProductDTO productDTO);
         void DeleteProduct(ProductDTO productDTO);
         void DecreaseStock(int id);
-        void AddToCart(int id);
         List<ProductDTO> GetAllProducts();
         ProductDTO GetProductById(int id);
     }

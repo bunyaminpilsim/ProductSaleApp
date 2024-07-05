@@ -90,12 +90,6 @@ namespace ProductSaleApp.Repositories
             }
         }
 
-        public void AddToCart(int productId)
-        {
-            // Sepete ekleme mantığını burada uygulayın.
-            // Örneğin, Cart tablosuna ekleme yapabilirsiniz.
-        }
-
         public void DecreaseStock(int productId)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == productId);
