@@ -1,0 +1,44 @@
+﻿@model ProductDTO
+
+@{
+    ViewData["Title"] = "Ürün Güncelle";
+
+}
+
+<h2 class="my-4">Ürün Güncelle</h2>
+
+<form asp-action="UpdateProduct" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label>Id</label>
+        <input type="number" class="form-control" asp-for="Id" readonly/>
+    </div>
+    <div class="form-group">
+        <label>Ürün Adı</label>
+        <input type="text" class="form-control" asp-for="Name" />
+    </div>
+
+    <div class="form-group">
+        <label>Alış Fiyat</label>
+        <input type="number" class="form-control" asp-for="PurchasePrice" />
+    </div>
+    <div class="form-group">
+        <label>Satış Fiyat</label>
+        <input type="number" class="form-control" asp-for="SalePrice" />
+    </div>
+    <div class="form-group">
+        <label>Stok</label>
+        <input type="number" class="form-control" asp-for="Stock" />
+    </div>
+
+    <div class="form-group">
+        <label>Dosya Seç:</label>
+        <input type="file" id="file" asp-for="File" />
+    </div>
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}

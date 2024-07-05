@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ProductDTO>
+
+@{
+    ViewData["Title"] = "Ürünler";
+}
+
+<h2 class="my-4">Ürünler</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                @foreach (var product in Model)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 @(product.Stock == 0 ? "bg-light text-muted" : "")">
+                            <img class="card-img-top" src="@product.ImagePath" alt="Ürün Image" style="width: 100%; height: 200px;">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@product.Name</h5>
+                                <p class="card-text"><strong>Fiyatı:</strong> @product.SalePrice TL</p>
+                                <p class="card-text"><strong>Stok Sayısı:</strong> @product.Stock</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <form method="post" action="/Product/SelectProduct">
+                                    <input type="hidden" name="productId" value="@product.Id" />
+                                    <button type="submit" class="btn btn-primary" @(product.Stock == 0 ? "disabled" : "")>Ekle</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-4" style="position: absolute; right: 0;">
+            @if (ViewBag.SelectedProducts != null && ((List<ProductDTO>)ViewBag.SelectedProducts).Count > 0)
+            {
+                <h3 class="my-4">Sepet</h3>
+                <ol>
+                    @foreach (var selectedProduct in ViewBag.SelectedProducts)
+                    {
+                        <li><h6>@selectedProduct.Name - @selectedProduct.SalePrice TL</h6></li>
+                    }
+                </ol>
+                <h5 class="my-4">Toplam Ciro: @ViewBag.TotalAmount TL</h5>
+                <h5 class="my-4">Toplam Kâr: @ViewBag.TotalEarn TL</h5>
+            }
+        </div>
+    </div>
+</div>
